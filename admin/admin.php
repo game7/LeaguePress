@@ -146,7 +146,7 @@ class LeaguePressAdminPanel extends LeaguePress
   {
     global $wpdb;
     
-    $seasons = $wpdb->get_results( "SELECT `name`, DATE_FORMAT(`startsOn`, '%Y-%m-%d %H:%i') AS `startsOn`, `settings` FROM {$wpdb->leaguepress_seasons} ORDER BY id DESC" );
+    $seasons = $wpdb->get_results( "SELECT `id`, `name`, DATE_FORMAT(`startsOn`, '%Y-%m-%d %H:%i') AS `startsOn`, `settings` FROM {$wpdb->leaguepress_seasons} ORDER BY id DESC" );
     
     $i = 0;
     foreach ( $seasons AS $season ) {
