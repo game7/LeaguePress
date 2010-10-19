@@ -142,12 +142,11 @@ class LeaguePressAdminPanel extends LeaguePress
     parent::setMessage( __('Current season updated', 'leaguepress') );      
   }
   
-  function listSeasonsForAdmin()
+  function listSeasonsForAdmin( $leagueId )
   {
     global $wpdb;
-    
-    $seasons = $wpdb->get_results( "SELECT `id`, `name`, DATE_FORMAT(`startsOn`, '%Y-%m-%d %H:%i') AS `startsOn`, `settings` FROM {$wpdb->leaguepress_seasons} ORDER BY id DESC" );
-    
+    $seasons = $wpdb->get_results( $wpdb->prepare ("SELECT `id`, `name`, `startsOn`, `settings` FROM {$wpdb->leaguepress_seasons} WHERE `leagueId` = '%d' ORDER BY startsOn DESC", $leagueId ) );
+
     $i = 0;
     foreach ( $seasons AS $season ) {
       $season->settings = maybe_unserialize($season->settings);
