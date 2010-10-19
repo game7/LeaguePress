@@ -80,7 +80,7 @@ else :
                 <tr class="<?php echo $class ?>">
                   <th scope="row" class="check-column"><input type="checkbox" value="<?php echo $key ?>" name="del_season[<?php echo $key ?>]" /></th>
                   <td>
-                    <?php echo $season->name; ?><br/>
+                    <a href="admin.php?page=leaguepress-leagues&amp;view=detail&amp;leagueId=<?php echo $league->id ?>&amp;seasonId=<?php echo $season->id ?>"><?php echo $season->name; ?></a><br/>
                     <div class="row-actions">
                       <span class="inline">
                         <a href="#" class="editinline">Rename</a> | 
