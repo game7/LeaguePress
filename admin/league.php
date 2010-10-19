@@ -49,7 +49,7 @@ $seasons = $this->listSeasonsForAdmin( $leagueId )
     </div>
   </div>
   <ul class="subsubsub">
-    <li><a href="admin.php?page=leaguepress&amp;view=league-settings&amp;leagueId=<?php echo $league->id ?>">Settings</a></li>
-    <li><a href="admin.php?page=leaguepress&amp;view=league-seasons&amp;leagueId=<?php echo $league->id ?>">Seasons</a></li>
+    <li><a href="admin.php?page=leaguepress-leagues&amp;view=league-settings&amp;leagueId=<?php echo $league->id ?>">Settings</a></li>
+    <li><a href="admin.php?page=leaguepress-leagues&amp;view=league-seasons&amp;leagueId=<?php echo $league->id ?>">Seasons</a></li>
   </ul>
 </div>
