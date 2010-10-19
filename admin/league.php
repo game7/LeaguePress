@@ -7,6 +7,10 @@ $seasons = $this->listSeasonsForAdmin( $leagueId )
 ?>
 <div class="wrap">
   <h2><?php echo $league->name ?></h2>
+  <ul class="subsubsub">
+    <li><a href="admin.php?page=leaguepress-leagues&amp;view=league-settings&amp;leagueId=<?php echo $league->id ?>">Settings</a> | </li>
+    <li><a href="admin.php?page=leaguepress-leagues&amp;view=league-seasons&amp;leagueId=<?php echo $league->id ?>">Seasons</a></li>
+  </ul>  
   <div id="poststuff" class="metabox-holder has-right-sidebar">
     <div id="side-info-column" class="inner-sidebar">
       <div >
@@ -48,8 +52,5 @@ $seasons = $this->listSeasonsForAdmin( $leagueId )
       </div>
     </div>
   </div>
-  <ul class="subsubsub">
-    <li><a href="admin.php?page=leaguepress-leagues&amp;view=league-settings&amp;leagueId=<?php echo $league->id ?>">Settings</a></li>
-    <li><a href="admin.php?page=leaguepress-leagues&amp;view=league-seasons&amp;leagueId=<?php echo $league->id ?>">Seasons</a></li>
-  </ul>
+
 </div>
