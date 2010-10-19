@@ -102,8 +102,8 @@ class LeaguePress {
   
   function getLeague( $leagueId ) {
     global $wpdb;
-    
-    $league = $wpdb->get_results( "SELECT `name`, `id`, `settings` FROM {$wpdb->leaguepress_leagues}" );
+    $league = $wpdb->get_results( $wpdb->prepare ( "SELECT `name`, `id`, `settings` FROM {$wpdb->leaguepress_leagues} WHERE `id` = %d", $leagueId ) );
+
     $league = $league[0];
     $league->settings = (array)maybe_unserialize($league->settings);
 
