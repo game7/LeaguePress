@@ -60,7 +60,7 @@ if ( isset($_POST['addLeague']) ) {
                 <tr class="<?php echo $class ?>">
                   <th scope="row" class="check-column"><input type="checkbox" value="<?php echo $league->id ?>" name="league[<?php echo $league->id ?>]" /></th>
                   <td class="num"><?php echo $league->id ?></td>
-                  <td><a href="admin.php?page=leaguepress-leagues&amp;view=detail&amp;id=<?php echo $league->id ?>"><?php echo $league->name ?></a></td>
+                  <td><a href="admin.php?page=leaguepress-leagues&amp;view=detail&amp;leagueId=<?php echo $league->id ?>"><?php echo $league->name ?></a></td>
                   <td class="num"><?php echo $league->seasonCount ?></td>
                   <td>Winter 2010</td>
                 </tr>
