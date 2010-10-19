@@ -28,7 +28,7 @@ else :
   <p class="leaguepress_breadcrumb">
     <a href="admin.php?page=leaguepress"><?php _e( 'LeaguePress', 'leaguepress' ) ?></a>
      &raquo; <a href="admin.php?page=leaguepress-leagues">Leagues</a>
-     &raquo; <a href="admin.php?page=leaguepress&amp;view=league&amp;leagueId=<?php echo $league->id ?>"><?php echo $league->name ?></a>
+     &raquo; <a href="admin.php?page=leaguepress-leagues&amp;view=detail&amp;leagueId=<?php echo $league->id ?>"><?php echo $league->name ?></a>
      &raquo; <?php _e( 'Seasons', 'leaguepress' ) ?>
   </p>
   

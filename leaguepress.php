@@ -418,29 +418,11 @@ class LeaguePressLoader
         		
 		$create_teams_sql = "CREATE TABLE {$wpdb->leaguepress_teams} (
 						`id` int( 11 ) NOT NULL AUTO_INCREMENT ,
-						`status` varchar( 50 ) NOT NULL default '&#8226;',
-						`title` varchar( 100 ) NOT NULL default '',
+            `seasonId` int( 11 ) NOT NULL,						
+						`name` varchar( 100 ) NOT NULL default '',
+            `shortName` varchar( 100 ) NOT NULL default '',						
 						`logo` varchar( 150 ) NOT NULL default '',
 						`website` varchar( 255 ) NOT NULL default '',
-						`coach` varchar( 100 ) NOT NULL default '',
-						`stadium` varchar( 150 ) NOT NULL default '',
-						`home` tinyint( 1 ) NOT NULL default '0',
-						`points_plus` int( 11 ) NOT NULL default '0',
-						`points_minus` int( 11 ) NOT NULL default '0',
-						`points2_plus` int( 11 ) NOT NULL default '0',
-						`points2_minus` int( 11 ) NOT NULL default '0',
-						`add_points` int( 11 ) NOT NULL default '0',
-						`done_matches` int( 11 ) NOT NULL default '0',
-						`won_matches` int( 11 ) NOT NULL default '0',
-						`draw_matches` int( 11 ) NOT NULL default '0',
-						`lost_matches` int( 11 ) NOT NULL default '0',
-						`diff` int( 11 ) NOT NULL default '0',
-						`group` varchar( 30 ) NOT NULL default '',
-						`league_id` int( 11 ) NOT NULL,
-						`season` varchar( 255 ) NOT NULL default '',
-						`rank` int( 11 ) NOT NULL default '0',
-						`roster` longtext NOT NULL,
-						`custom` longtext NOT NULL,
 						PRIMARY KEY ( `id` )) $charset_collate;";
 		maybe_create_table( $wpdb->leaguepress_teams, $create_teams_sql );
 			

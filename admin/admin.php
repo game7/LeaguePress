@@ -44,15 +44,14 @@ class LeaguePressAdminPanel extends LeaguePress
     $options = get_option('leaguepress');
     $page = str_replace('leaguepress-', '', $_GET['page']);
     
-    if (isset($_GET['view']))
-      $page = $_GET['view'];
+    $view = isset($_GET['view']) ? $_GET['view'] : 'index';
 
     switch ($page) {
       case 'leaguepress':
-        include_once(dirname(__FILE__) . '/dashboard.php');
+        include_once(dirname(__FILE__) . '/dashboard/index.php');
         break;      
       default:
-        include_once(dirname(__FILE__) . '/' . $page . '.php');
+        include_once(dirname(__FILE__) . '/' . $page . '/' . $view . '.php');
         break;
     }
     
@@ -143,7 +142,7 @@ class LeaguePressAdminPanel extends LeaguePress
     parent::setMessage( __('Current season updated', 'leaguepress') );      
   }
   
-    function listSeasonsForAdmin()
+  function listSeasonsForAdmin()
   {
     global $wpdb;
     
@@ -179,8 +178,26 @@ class LeaguePressAdminPanel extends LeaguePress
   
   function createTeamForSeason ( $seasonId, $name, $shortName )
   {
+    global $wpdb;
     
+    //$settings = array( 'upload_dir' => 'wp-content/uploads/leaguemanager', 'standings' => array('pld' => 1, 'won' => 1, 'tie' => 1, 'lost' => 1) );
+    $wpdb->query( $wpdb->prepare ( "INSERT INTO {$wpdb->leaguepress_teams} (seasonId, name, shortName) VALUES (%d, '%s', '%s')", $seasonId, $name, $shortName) );
+    parent::setMessage( __('New Team added', 'leaguepress') );   
   }
+  
+  function deleteTeam ( $teamId ) {
+    global $wpdb;
+    $wpdb->query( $wpdb->prepare ( "DELETE FROM {$wpdb->leaguepress_teams} WHERE `id` = '%d'", $teamId ) );
+  }
+  
+  function listTEamsForSeasonForAdmin ( $seasonId )
+  {
+    global $wpdb;
+    
+    $teams = $wpdb->get_results( "SELECT `id`, `name`, `shortName` FROM {$wpdb->leaguepress_teams} ORDER BY name ASC" );  
+   
+    return $teams;
+  }  
   
   function renameTeam ( $teamId, $newName, $newShortName )
   {
