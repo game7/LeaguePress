@@ -12,7 +12,6 @@
         </select>
         <input type="submit" value="<?php _e('Apply'); ?>" name="doaction" id="doaction" class="button-secondary action" />
     </div>
-    
     <!-- Table -->
     <table class="widefat">
       <thead>
@@ -23,6 +22,10 @@
           <th scope="col" class="num"><?php _e( 'Players', 'leaguepress' ) ?></th>
         </tr>
       </thead>
+      <?php /* 
+       * TO DO - make the footer conditionally appear only when 
+       * certain number of teams are present
+       * ?>
       <tfoot>
         <tr>
           <th scope="col" class="check-column"><input type="checkbox" onclick="Leaguemanager.checkAll(document.getElementById('seaons-filter'));" /></th>
@@ -30,7 +33,8 @@
           <th scope="col"><?php _e( 'Short Name', 'leaguePress' ) ?></th>
           <th scope="col" class="num"><?php _e( 'Players', 'leaguepress' ) ?></th>
         </tr>
-      </tfoot>              
+      </tfoot>  
+      <?php */ ?>            
       <tbody id="the-list" class="list">
         <?php foreach( $teams AS $team ) : $class = ( 'alternate' == $class ) ? '' : 'alternate' ?>
         <tr class="<?php echo $class ?>">
@@ -47,6 +51,11 @@
           <td class="num">0</td>
         </tr>
         <?php endforeach; ?>
+        <?php if (count($teams) == 0) : ?>
+        <tr class="alternate">
+          <td colspan="4"><p>There are currently no teams maintained.</p></td>
+        </tr>
+        <?php endif ?>
       </tbody>
     </table>
   </form> 
