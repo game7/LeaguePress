@@ -52,12 +52,12 @@ $teams = $this->listTeamsForSeasonForAdmin( $season->id );
 <?php if(isset($season)) : ?>
               <select size="1" name="seasonId" id="seasonId">
                 <?php foreach ( $seasons AS $s ) : ?>
-                <option value="<?php echo $s->id ?>"><?php echo $s->name ?></option>
+                <option value="<?php echo $s->id ?>"<?php if($season->id == $s->id) echo ' selected'; ?>><?php echo $s->name ?></option>
                 <?php endforeach ?> 
               </select>
               <input type="hidden" name="page" value="leaguepress-leagues"/>
               <input type="hidden" name="view" value="detail"/>    
-              <input type="hidden" name="id" value="<?php echo $league->id ?>"/>
+              <input type="hidden" name="leagueId" value="<?php echo $league->id ?>"/>
               <input type="submit" value="Change" class="button"/>
 <?php endif ?>
               <a href="admin.php?page=leaguepress-leagues&amp;view=seasons&amp;leagueId=<?php echo $league->id ?>">Manage Seasons</a>      
@@ -77,6 +77,15 @@ $teams = $this->listTeamsForSeasonForAdmin( $season->id );
           </div>
         </div>
 <?php endif ?>
+
+        <div class="stuffbox">
+          <h3>Add Teams</h3>
+          <div class="inside">
+           <div class="submitbox">
+           
+           </div>
+          </div>
+        </div>
         
         <div class="stuffbox">
           <h3>Settings</h3>
