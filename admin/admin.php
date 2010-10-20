@@ -116,8 +116,10 @@ class LeaguePressAdminPanel extends LeaguePress
     global $wpdb;
     
     //$settings = array( 'upload_dir' => 'wp-content/uploads/leaguemanager', 'standings' => array('pld' => 1, 'won' => 1, 'tie' => 1, 'lost' => 1) );
-    $wpdb->query( $wpdb->prepare ( "INSERT INTO {$wpdb->leaguepress_leagues} (name) VALUES ('%s')", $name) );
+    $wpdb->insert($wpdb->leaguepress_leagues, array( 'name' => $name), array( '%s' ));
+    $id = $wpdb->insert_id;
     parent::setMessage( __('New League added', 'leaguepress') );
+    return $id;
   }
   
   function deleteLeague($leagueId)
@@ -163,8 +165,10 @@ class LeaguePressAdminPanel extends LeaguePress
      global $wpdb;
     
     //$settings = array( 'upload_dir' => 'wp-content/uploads/leaguemanager', 'standings' => array('pld' => 1, 'won' => 1, 'tie' => 1, 'lost' => 1) );
-    $wpdb->query( $wpdb->prepare ( "INSERT INTO {$wpdb->leaguepress_seasons} (leagueId, name, startsOn) VALUES (%d, '%s', '%s')", $leagueId, $name, $startsOn) );
-    parent::setMessage( __('New Season added', 'leaguepress') );   
+    $wpdb->insert($wpdb->leaguepress_seasons, array( 'leagueId' => $leagueId, 'name' => $name, 'startsOn' => $startsOn), array( '%d', '%s', '%s' ));
+    $id = $wpdb->insert_id;    
+    parent::setMessage( __('New Season added', 'leaguepress') ); 
+    return $id;  
   }
   
   function renameSeason ( $seasonId, $newName )
@@ -180,8 +184,10 @@ class LeaguePressAdminPanel extends LeaguePress
     global $wpdb;
     
     //$settings = array( 'upload_dir' => 'wp-content/uploads/leaguemanager', 'standings' => array('pld' => 1, 'won' => 1, 'tie' => 1, 'lost' => 1) );
-    $wpdb->query( $wpdb->prepare ( "INSERT INTO {$wpdb->leaguepress_teams} (seasonId, name, shortName) VALUES (%d, '%s', '%s')", $seasonId, $name, $shortName) );
-    parent::setMessage( __('New Team added', 'leaguepress') );   
+    $wpdb->insert($wpdb->leaguepress_teams, array( 'seasonId' => $seasonId, 'name' => $name, 'shortName' => $shortName), array( '%d', '%s', '%s' ));
+    $id = $wpdb->insert_id;    
+    parent::setMessage( __('New Team added', 'leaguepress') );  
+    return $id; 
   }
   
   function deleteTeam ( $teamId ) {
