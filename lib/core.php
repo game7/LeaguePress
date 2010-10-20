@@ -115,6 +115,19 @@ class LeaguePress {
 
   }
   
+  function getSeason( $seasonId ) {
+    global $wpdb;
+    $season = $wpdb->get_results( $wpdb->prepare ( "SELECT `name`, `id`, `settings` FROM {$wpdb->leaguepress_seasons} WHERE `id` = %d", $seasonId ) );
+
+    $season = $season[0];
+    $season->settings = (array)maybe_unserialize($league->settings);
+
+    $season = (object)array_merge((array)$season,(array)$season->settings);
+    unset($season->settings);
+
+    $this->season = $season;
+    return $season;
+  }  
   
 }
 
