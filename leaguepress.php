@@ -420,7 +420,8 @@ class LeaguePressLoader
 						`id` int( 11 ) NOT NULL AUTO_INCREMENT ,
             `seasonId` int( 11 ) NOT NULL,						
 						`name` varchar( 100 ) NOT NULL default '',
-            `shortName` varchar( 100 ) NOT NULL default '',						
+            `shortName` varchar( 100 ) NOT NULL default '',	
+            `showInStandings` bool NOT NULL default '0',		
 						`logo` varchar( 150 ) NOT NULL default '',
 						`website` varchar( 255 ) NOT NULL default '',
 						PRIMARY KEY ( `id` )) $charset_collate;";

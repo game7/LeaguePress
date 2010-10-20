@@ -179,12 +179,15 @@ class LeaguePressAdminPanel extends LeaguePress
     parent::setMessage( __('Season renamed', 'leaguepress') );       
   }
   
-  function createTeamForSeason ( $seasonId, $name, $shortName )
+  function createTeamForSeason ( $seasonId, $name, $shortName, $showInStandings )
   {
     global $wpdb;
     
+    // set shortName if empty
+    $shortName = empty($shortName) ? $name : $shortName;
+    
     //$settings = array( 'upload_dir' => 'wp-content/uploads/leaguemanager', 'standings' => array('pld' => 1, 'won' => 1, 'tie' => 1, 'lost' => 1) );
-    $wpdb->insert($wpdb->leaguepress_teams, array( 'seasonId' => $seasonId, 'name' => $name, 'shortName' => $shortName), array( '%d', '%s', '%s' ));
+    $wpdb->insert($wpdb->leaguepress_teams, array( 'seasonId' => $seasonId, 'name' => $name, 'shortName' => $shortName, 'showInStandings' => $showInStandings), array( '%d', '%s', '%s', '%d' ));
     $id = $wpdb->insert_id;    
     parent::setMessage( __('New Team added', 'leaguepress') );  
     return $id; 
