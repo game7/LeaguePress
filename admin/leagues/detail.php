@@ -77,16 +77,7 @@ $teams = $this->listTeamsForSeasonForAdmin( $season->id );
           </div>
         </div>
 <?php endif ?>
-
-        <div class="stuffbox">
-          <h3>Add Teams</h3>
-          <div class="inside">
-           <div class="submitbox">
-           
-           </div>
-          </div>
-        </div>
-        
+       
         <div class="stuffbox">
           <h3>Settings</h3>
           <div class="inside">

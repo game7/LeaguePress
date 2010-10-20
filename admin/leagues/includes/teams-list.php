@@ -11,6 +11,7 @@
           <option value="delete"><?php _e('Delete')?></option>
         </select>
         <input type="submit" value="<?php _e('Apply'); ?>" name="doaction" id="doaction" class="button-secondary action" />
+        <a href="admin.php?page=leaguepress-leagues&amp;view=teams-add&amp;leagueId=<?php echo $league->id ?>&amp;seasonId=<?php echo $season->id ?>">Add New Teams</a>
     </div>
     <!-- Table -->
     <table class="widefat">
@@ -39,14 +40,7 @@
         <?php foreach( $teams AS $team ) : $class = ( 'alternate' == $class ) ? '' : 'alternate' ?>
         <tr class="<?php echo $class ?>">
           <th scope="row" class="check-column"><input type="checkbox" value="<?php echo $key ?>" name="del_team[<?php echo $key ?>]" /></th>
-          <td>
-            <?php echo $team->name; ?><br/>
-            <div class="row-actions">
-              <span class="inline">
-                <a href="#" class="editinline">Rename</a>
-              </span>                   
-            </div>
-          </td>
+          <td><?php echo $team->name; ?></td>
           <td><?php echo $team->shortName; ?></td>                      
           <td class="num">0</td>
         </tr>
