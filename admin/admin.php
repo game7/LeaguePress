@@ -5,8 +5,12 @@ class LeaguePressAdminPanel extends LeaguePress
   
   
   function __construct() {
+      
     require_once( ABSPATH . 'wp-admin/includes/template.php' );
     add_action( 'admin_menu', array(&$this, 'menu') );
+    
+    require_once(dirname(__FILE__).'/router.php');
+    
   }
   
   function LeaguePressAdminPanel() {
@@ -24,12 +28,12 @@ class LeaguePressAdminPanel extends LeaguePress
     $plugin = 'leaguepress/leaguepress.php';
 
     if ( function_exists('add_object_page') )
-      add_object_page( __('LeaguePress','leaguepress'), __('LeaguePress','leaguepress'), 'leagues', LEAGUEPRESS_PATH, array(&$this, 'display') );
+      add_object_page( __('LeaguePress','leaguepress'), __('LeaguePress','leaguepress'), 'leagues', LEAGUEPRESS_PATH, array(&$this, 'request_handler') );
     else
-      add_menu_page( __('LeaguePress','leaguepress'), __('LeaguePress','leaguepress'), 'leagues', LEAGUEPRESS_PATH, array(&$this, 'display'));
+      add_menu_page( __('LeaguePress','leaguepress'), __('LeaguePress','leaguepress'), 'leagues', LEAGUEPRESS_PATH, array(&$this, 'request_handler'));
 
-    add_submenu_page(LEAGUEPRESS_PATH, __('LeaguePress', 'leaguepress'), __('Dashboard','leaguepress'), 'leagues', LEAGUEPRESS_PATH, array(&$this, 'display'));
-    add_submenu_page(LEAGUEPRESS_PATH, __('Leagues', 'leaguepress'), __('Leagues','leaguepress'),'manage_leagues', 'leaguepress-leagues', array(&$this, 'display' ));    
+    add_submenu_page(LEAGUEPRESS_PATH, __('LeaguePress', 'leaguepress'), __('Dashboard','leaguepress'), 'leagues', LEAGUEPRESS_PATH, array(&$this, 'request_handler'));
+    add_submenu_page(LEAGUEPRESS_PATH, __('Leagues', 'leaguepress'), __('Leagues','leaguepress'),'manage_leagues', 'leaguepress-leagues', array(&$this, 'request_handler' ));    
     add_submenu_page(LEAGUEPRESS_PATH, __('Schedule', 'leaguepress'), __('Schedule','leaguepress'),'manage_leagues', 'leaguepress-schedule', array(&$this, 'display' ));    
     add_submenu_page(LEAGUEPRESS_PATH, __('Post Results', 'leaguepress'), __('Post Results','leaguepress'),'manage_leagues', 'leaguepress-results', array(&$this, 'display' ));    
     add_submenu_page(LEAGUEPRESS_PATH, __('Settings', 'leaguepress'), __('Settings','leaguepress'),'manage_leagues', 'leaguepress-settings', array(&$this, 'display' ));
@@ -55,6 +59,33 @@ class LeaguePressAdminPanel extends LeaguePress
         break;
     }
     
+    
+  }
+
+  public function request_handler() {
+    
+    $controller = $_GET['controller'];
+    if (!$controller) {
+      $page = $_GET['page'];
+      $controller = str_replace('leaguepress-', '', $page);
+      if ($conroller == 'leaguepress')
+        $controller = 'dashboard';
+    } 
+
+    $action = $_GET['action'];
+    // get variables are the parameters
+    $params = $_GET;
+
+    // but we can remove page and action
+    unset( $params['page'] );
+    unset( $params['controller']);
+    unset( $params['action'] );
+    
+    $route = array( $controller, $action, $params );
+    $default_controller = 'dashboard';
+    $default_method = 'index';
+    
+    $router = new Router( $route, $default_controller, $default_method, $params );
     
   }
 

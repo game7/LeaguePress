@@ -137,8 +137,11 @@ class LeaguePressLoader
 			
 		define( 'LEAGUEPRESS_VERSION', $this->version );
 		define( 'LEAGUEPRESS_DBVERSION', $this->dbversion );
-		define( 'LEAGUEPRESS_URL', WP_PLUGIN_URL.'/leaguepress' );
-		define( 'LEAGUEPRESS_PATH', WP_PLUGIN_DIR.'/leaguepress' );
+		define( 'LEAGUEPRESS_URL', WP_PLUGIN_URL.'/leaguepress/' );
+		define( 'LEAGUEPRESS_PATH', WP_PLUGIN_DIR.'/leaguepress/' );
+    define( 'LEAGUEPRESS_MODEL_PATH', WP_PLUGIN_DIR.'/leaguepress/admin/models/' );    
+    define( 'LEAGUEPRESS_VIEW_PATH', WP_PLUGIN_DIR.'/leaguepress/admin/views/' );
+    define( 'LEAGUEPRESS_CONTROLLER_PATH', WP_PLUGIN_DIR.'/leaguepress/admin/controllers/' );    
 	}
 
 	
@@ -158,6 +161,11 @@ class LeaguePressLoader
 		require_once (dirname (__FILE__) . '/lib/ajax.php');
 		require_once (dirname (__FILE__) . '/lib/shortcodes.php');
 		require_once (dirname (__FILE__) . '/lib/widget.php');
+    require_once (dirname (__FILE__) . '/lib/controller_base.php');
+    require_once (dirname (__FILE__) . '/lib/model_base.php');
+    require_once (dirname (__FILE__) . '/lib/url.php');    
+    require_once (dirname (__FILE__) . '/lib/html.php');
+    require_once (dirname (__FILE__) . '/lib/form.php');
 		require_once (dirname (__FILE__) . '/functions.php');
 		$this->loadSports();
 		//$lpAJAX = new LeaguePressAJAX();
@@ -179,6 +187,7 @@ class LeaguePressLoader
 	 */
 	function loadSports()
 	{
+	  /*
 		$dir = LEAGUEPRESS_PATH."/sports";
 		if ( $handle = opendir($dir) ) {
 			while ( false !== ($file = readdir($handle)) ) {
@@ -189,6 +198,7 @@ class LeaguePressLoader
 				}
 			}
 		}
+     */
 	}
 
 
