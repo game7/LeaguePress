@@ -14,12 +14,10 @@
   
   <div id="poststuff" class="metabox-holder has-right-sidebar">
     <div id="side-info-column" class="inner-sidebar">
-      <div >
-        <div class="stuffbox">
-          <h3>Help</h3>
-          <div class="inside">
+      <div class="stuffbox">
+        <h3>Help</h3>
+        <div class="inside">
 
-          </div>
         </div>
       </div>
     </div>
