@@ -19,18 +19,17 @@ class FormHelper
     
     $htmlAttributes = $options;
     
+    // method
     if (!$htmlAttributes['method'])
-      $htmlAttributes['method'] = 'POST';
-    
-    if ( $action && $controller ) {
-      $url = $this->url->action( $controller, $action ); 
-      $htmlAttributes = array_merge($htmlAttributes, array( 'action' => $url ));
-    }    
-    
+      $htmlAttributes['method'] = 'POST'; 
+      
+    // controller
+    if ( !$controller ) $controller = $_GET['controller'  ];
+            
     $output .= $this->html->beginTag( 'form', $htmlAttributes );
     $output .= $this->html->hidden( 'page', $_GET['page']);
-    if ($controller) $output .= $this->html->hidden( 'controller', $controller);
-    if ($action) $output .= $this->html->hidden( 'action', $action);
+    if ( $controller ) $output .= $this->html->hidden( 'controller', $controller);
+    if ( $action ) $output .= $this->html->hidden( 'action', $action);
     
     return $output;
     
