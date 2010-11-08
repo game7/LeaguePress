@@ -29,20 +29,18 @@
         <div class="stuffbox">
           <h3>Season</h3>
           <div class="inside">
-            <form action="admin.php" method="get" style="display: inline">
+            <?php echo $this->form->begin( array( 'method' => 'get', 'style' => 'display: inline' ), 'leagues', 'show' ) ?>
 <?php if(isset($model->season)) : ?>
+              <input type="hidden" name="id" value="<?php echo $model->league->id ?>"/>
               <select size="1" name="seasonId" id="seasonId">
                 <?php foreach ( $model->seasons AS $s ) : ?>
                 <option value="<?php echo $s->id ?>"<?php if($model->season->id == $s->id) echo ' selected'; ?>><?php echo $s->name ?></option>
                 <?php endforeach ?> 
               </select>
-              <input type="hidden" name="page" value="leaguepress-leagues"/>
-              <input type="hidden" name="view" value="detail"/>    
-              <input type="hidden" name="leagueId" value="<?php echo $model->league->id ?>"/>
               <input type="submit" value="Change" class="button"/>
 <?php endif ?>
               <a href="admin.php?page=leaguepress-leagues&amp;view=seasons&amp;leagueId=<?php echo $model->league->id ?>">Manage Seasons</a>      
-            </form>
+            <?php echo $this->form->end() ?>
           </div>
         </div>
 
@@ -52,7 +50,7 @@
           <div class="inside">
            <div class="submitbox">
  
-            <?php include_once(dirname(__FILE__) . '\includes\teams-list.php') ?>
+            <?php include_once(dirname(__FILE__) . '\teams-list.php') ?>
            
            </div>
           </div>

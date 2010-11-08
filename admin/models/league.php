@@ -46,6 +46,13 @@ class League extends leaguepress_model_base
 
   }
   
+  public static function Delete( $leagueId ) {
+
+    global $wpdb;
+    $wpdb->query( $wpdb->prepare ( "DELETE FROM {$wpdb->leaguepress_leagues} WHERE `id` = '%d'", $leagueId ) );
+
+  }
+  
 }
 
 ?>
