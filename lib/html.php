@@ -66,7 +66,7 @@ class HtmlHelper {
     'javascriptlink' => '<script type="text/javascript" src="%s"%s></script>',
     'javascriptend' => '</script>'
   );
-    
+  
   
   function beginTag( $tag, $attributes = array() ) {
        
@@ -77,6 +77,10 @@ class HtmlHelper {
   function endTag( $tag ) {
     return $this->tags['formend'];
   }
+
+  function selfClosingTag( $tag, $attributes = array() ) {
+    
+  }
   
   /*
    * 'link' => '<a href="%s"%s>%s</a>'
@@ -85,6 +89,10 @@ class HtmlHelper {
       
     return sprintf( $this->tags['link'], $url, $this->attributes_to_string($options), $title);
     
+  }
+
+  function hidden( $name, $value ) {
+    return sprintf( $this->tags['hidden'], $name, $this->attributes_to_string( array( 'value' => $value ) ) );
   }
 
   function attributes_to_string( $array ) {
