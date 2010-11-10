@@ -64,17 +64,17 @@ class LeaguePressAdminPanel extends LeaguePress
 
   public function request_handler() {
     
-    $controller = $_GET['controller'];
+    $params = array_merge( $_GET, $_POST );
+    
+    $controller = $params['controller'];
     if (!$controller) {
-      $page = $_GET['page'];
+      $page = $params['page'];
       $controller = str_replace('leaguepress-', '', $page);
       if ($conroller == 'leaguepress')
         $controller = 'dashboard';
     } 
 
-    $action = $_GET['action'];
-    // get variables are the parameters
-    $params = $_GET;
+    $action = $params['action'];
 
     // but we can remove page and action
     unset( $params['page'] );
